@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    </head>
+    <body>
+        <canvas id="myChart" >
+        </canvas>
+    </body>
+    <script type="text/javascript">
+        var data = {
+                        "entity": {
+                            "Germany": {
+                                "avg_sentiment": 0.2973507046699524,
+                                "frequency": 1
+                            },
+                            "Mexico\\u2013United States barrier": {
+                                "avg_sentiment": 0.8444602489471436,
+                                "frequency": 1
+                            },
+                            "Spain": {
+                                "avg_sentiment": 0.9474703073501587,
+                                "frequency": 1
+                            }
+                        },
+                        "key_phrases": {
+                            "Germany": {
+                                "avg_sentiment": 0.2973507046699524,
+                                "frequency": 1
+                            },
+                            "Mexican border wall": {
+                                "avg_sentiment": 0.8444602489471436,
+                                "frequency": 1
+                            },
+                            "Spain": {
+                                "avg_sentiment": 0.9474703073501587,
+                                "frequency": 1
+                            },
+                            "fun holiday": {
+                                "avg_sentiment": 0.9474703073501587,
+                                "frequency": 1
+                            }
+                        }
+                    }
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var dataSet = [];
+        var labels = [];
+        var backGroundColours = [];
+        var colourGen = function () {
+            this.colour = {
+                r : 50
+                , g : 100
+                , b : 150
+            }
+            this.colourVec = {
+                r : 10
+                , g : 20
+                , b : 10
+            }
+            this.nextColour = function() {
+                for (let col in this.colour) {
+                    this.colour[col] += this.colourVec[col];
+                }
+                return this.formatColour();
+            }
+
+            this.formatColour = function() {
+                return "RGB(" + this.colour.r + "," + this.colour.g + "," + this.colour.b + ")";
+            }
+        }
+        var col_generator = new colourGen();
+        if (data.entity) {
+            for (let ent in data.entity) {
+                if (ent) {
+                    labels.push(ent);
+                    dataSet.push(data.entity[ent].avg_sentiment);
+                    backGroundColours.push(col_generator.nextColour());
+                }
+            }
+            for (let ent in data.key_phrases) {
+                if (ent) {
+                    labels.push(ent);
+                    dataSet.push(data.key_phrases[ent].avg_sentiment);
+                    backGroundColours.push(col_generator.nextColour());
+                }
+            }
+        }
+        console.log(labels);
+        console.log(dataSet);
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'polarArea',
+            // The data for our dataset
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Entity',
+                    backgroundColor: backGroundColours,
+                    borderColor: 'rgb(0, 0, 0)',
+                    data: dataSet
+                }]
+            },
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+</html>

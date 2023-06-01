@@ -1,0 +1,30 @@
+{
+    "entity": {
+        "Germany": {
+            "avg_sentiment": 0.2973507046699524,
+            "frequency": 1
+        },
+        "Mexico\\u2013United States barrier": {
+            "avg_sentiment": 0.8444602489471436,
+            "frequency": 1
+        },
+        "Spain": {
+            "avg_sentiment": 0.9474703073501587,
+            "frequency": 1
+        }
+    },
+    "key_phrases": {
+        "Germany": {
+            "avg_sentiment": 0.2973507046699524,
+            "frequency": 1
+        }, "Mexican border wall": {"avg_sentiment": 0.8444602489471436, "frequency": 1}, 
+        "Spain": {
+            "avg_sentiment": 0.9474703073501587,
+            "frequency": 1
+        },
+        "fun holiday": {
+            "avg_sentiment": 0.9474703073501587,
+            "frequency": 1
+        }
+    }
+}
